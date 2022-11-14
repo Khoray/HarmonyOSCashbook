@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Copyright (c) 2021 Huawei Device Co., Ltd.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+<DirectionalLayout xmlns:ohos="http://schemas.huawei.com/res/ohos"
+                   ohos:width="match_parent"
+                   ohos:alignment="center"
+                   ohos:padding="5vp"
+                   ohos:orientation="vertical"
+                   ohos:height="match_content">
+
+    <Text
+        ohos:id="$+id:addandedit_title"
+        ohos:width="match_content"
+        ohos:top_margin="5vp"
+        ohos:height="match_content"
+        ohos:text="[添加/修改]项目"
+        ohos:text_size="20fp"
+        ohos:text_color="#000000"/>
+
+    <Text
+        ohos:width="match_parent"
+        ohos:height="1vp"
+        ohos:text_size="18fp"
+        ohos:top_margin="5vp"
+        ohos:bottom_margin="5vp"
+        ohos:background_element="#220000ff"/>
+
+    <DirectionalLayout
+        ohos:id="$+id:addandedit_main_layout"
+        ohos:width="match_parent"
+        ohos:orientation="vertical"
+        ohos:padding="5vp"
+        ohos:alignment="center"
+        ohos:weight="1"
+        ohos:height="0vp">
+        <DirectionalLayout
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:orientation="horizontal"
+            ohos:alignment="center"
+            >
+            <Text
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:text_size="17vp"
+                ohos:text_alignment="center"
+                ohos:text="金额:"
+                />
+            <TextField
+                ohos:id="$+id:money_textfield"
+                ohos:width="200vp"
+                ohos:padding="5vp"
+                ohos:text_alignment="center"
+                ohos:height="match_content"
+                ohos:text_size="16fp"
+                ohos:start_margin="10vp"
+                ohos:background_element="$graphic:bg_textfield"
+                ohos:text_color="#000000"/>
+        </DirectionalLayout>
+        <DirectionalLayout
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:orientation="horizontal"
+            ohos:alignment="center"
+            ohos:top_margin="10vp"
+            >
+            <Text
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:text_size="17vp"
+                ohos:text_alignment="center"
+                ohos:text="时间:"
+                />
+            <Button
+                ohos:id="$+id:addandedit_time_btn"
+                ohos:height="match_content"
+                ohos:width="200vp"
+                ohos:start_margin="10vp"
+                ohos:text_alignment="center"
+                ohos:text="点击选择时间"
+                ohos:text_size="17vp"
+                />
+        </DirectionalLayout>
+        <DirectionalLayout
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:orientation="horizontal"
+            ohos:alignment="center"
+            ohos:top_margin="10vp"
+            >
+            <Text
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:text_size="17vp"
+                ohos:text_alignment="center"
+                ohos:text="类型:"
+                />
+            <Button
+                ohos:id="$+id:addandedit_type_btn"
+                ohos:height="match_content"
+                ohos:width="200vp"
+                ohos:start_margin="10vp"
+                ohos:text_alignment="center"
+                ohos:text="点击选择类型"
+                ohos:text_size="17vp"
+                />
+        </DirectionalLayout>
+        <DirectionalLayout
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:orientation="horizontal"
+            ohos:alignment="center"
+            ohos:top_margin="10vp"
+            >
+            <Text
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:text_size="17vp"
+                ohos:text_alignment="center"
+                ohos:text="备注:"
+                />
+            <TextField
+                ohos:id="$+id:note_textfield"
+                ohos:width="200vp"
+                ohos:padding="5vp"
+                ohos:text_alignment="center"
+                ohos:height="match_content"
+                ohos:text_size="16fp"
+                ohos:start_margin="10vp"
+                ohos:background_element="$graphic:bg_textfield"
+                ohos:text_color="#000000"/>
+        </DirectionalLayout>
+    </DirectionalLayout>
+
+
+    <Text
+        ohos:width="match_parent"
+        ohos:height="1vp"
+        ohos:text_size="18fp"
+        ohos:top_margin="5vp"
+        ohos:bottom_margin="5vp"
+        ohos:background_element="#220000ff"/>
+
+
+    <DirectionalLayout
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:orientation="horizontal"
+        ohos:alignment="center"
+        ohos:top_margin="10vp"
+        ohos:total_weight="2"
+        >
+        <Button
+            ohos:id="$+id:andandedit_cancel_btn"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10vp"
+            ohos:height="match_parent"
+            ohos:weight="1"
+            ohos:text="取消"
+            ohos:text_size="20fp"
+            ohos:text_color="#000000"/>
+        <Button
+            ohos:id="$+id:addandedit_save_btn"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10vp"
+            ohos:height="match_parent"
+            ohos:weight="1"
+            ohos:text="保存"
+            ohos:text_size="20fp"
+            ohos:text_color="#000000"/>
+
+    </DirectionalLayout>
+
+</DirectionalLayout>
