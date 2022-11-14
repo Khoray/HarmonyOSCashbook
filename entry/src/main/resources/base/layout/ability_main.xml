@@ -130,13 +130,9 @@
         ohos:orientation="horizontal"
         ohos:start_padding="10vp"
         ohos:end_padding="10vp"
+        ohos:total_weight="3"
         >
-        <Text
-            ohos:height="match_content"
-            ohos:width="match_content"
-            ohos:text="搜索: "
-            ohos:text_size="17vp"
-            />
+
 
         <TextField
             ohos:id="$+id:search_field"
@@ -144,8 +140,17 @@
             ohos:width="match_parent"
             ohos:background_element="$graphic:bg_textfield"
             ohos:text_size="17vp"
+            ohos:weight="2.5"
             ohos:text_alignment="center"
             ohos:hint="搜索备注内容"
+            />
+        <Button
+            ohos:id="$+id:search_btn"
+            ohos:height="match_parent"
+            ohos:width="match_parent"
+            ohos:text="搜索"
+            ohos:weight="0.5"
+            ohos:text_size="17vp"
             />
     </DirectionalLayout>
 
@@ -166,6 +171,7 @@
             ohos:weight="1"
             />
         <Text
+            ohos:id="$+id:pay_text"
             ohos:height="match_parent"
             ohos:width="match_parent"
             ohos:layout_alignment="center"
@@ -181,6 +187,7 @@
             ohos:weight="1"
             />
         <Text
+            ohos:id="$+id:income_text"
             ohos:height="match_parent"
             ohos:width="match_parent"
             ohos:text="[0]"

@@ -24,6 +24,10 @@ public class TimeUtil {
         DateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日HH:mm");
         return sdf.format(new Date(time));
     }
+    public static String formatYMD(long time) {
+        DateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
+        return sdf.format(new Date(time));
+    }
     public static long YMDHMtoTime(int year, int month, int day, int hour, int minute) {
         DateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日HH:mm");
         try {

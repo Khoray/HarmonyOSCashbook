@@ -58,13 +58,15 @@ public class RecordItemProvider extends BaseItemProvider {
         if(nowRecord.getMajorType() == 0) {
             majorTypeText.setText("支");
             minorTypeText.setText(Const.payType[nowRecord.getMinorType()]);
+            moneyText.setText("-" + Double.toString(nowRecord.getValue()));
         } else {
-            majorTypeText.setText("出");
+            majorTypeText.setText("收");
             minorTypeText.setText(Const.incomeType[nowRecord.getMinorType()]);
+            moneyText.setText("+" + Double.toString(nowRecord.getValue()));
         }
 
         noteText.setText(nowRecord.getNote());
-        moneyText.setText(Double.toString(nowRecord.getValue()));
+
         timeText.setText(TimeUtil.formatYMDHM(nowRecord.getTime()));
 //        componentContainer.addComponent(dl);
         return dl;

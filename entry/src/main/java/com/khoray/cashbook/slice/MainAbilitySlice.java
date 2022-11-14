@@ -14,19 +14,16 @@ import ohos.agp.components.*;
 import ohos.data.DatabaseHelper;
 import ohos.data.orm.OrmContext;
 import ohos.data.orm.OrmPredicates;
-import ohos.hiviewdfx.Debug;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
 public class MainAbilitySlice extends AbilitySlice {
     long startTime, endTime;
     String noteContain;
     int recordMajorType, recordMinorType;
-    Text startTimeText, endTimeText, typeText;
+    Text startTimeText, endTimeText, typeText, payText, incomeText;
     TextField searchField;
-    Button startTimeModifyBtn, endTimeModifyBtn, typeModifyBtn, typeClearBtn, addandeditBtn;
+    Button startTimeModifyBtn, endTimeModifyBtn, typeModifyBtn, typeClearBtn, addandeditBtn, searchBtn;
     ListContainer listContainer;
     OrmContext ormContext;
     DatabaseHelper databaseHelper;
@@ -43,15 +40,30 @@ public class MainAbilitySlice extends AbilitySlice {
 
         getComponents();
         initListContainer();
-        updateRecordList();
 
-        setButtonListener();
+
+        setListener();
+
+        initScreening();
+
+        updateRecordList();
+    }
+
+    private void initScreening() {
+        recordMajorType = -1;
+        recordMinorType = -1;
+        long currentTime = System.currentTimeMillis();
+        startTime = currentTime - (currentTime % (24 * 60 * 60));
+        endTime = startTime + 24 * 60 * 60;
+
+        startTimeText.setText(TimeUtil.formatYMD(startTime));
+        endTimeText.setText(TimeUtil.formatYMD(endTime));
     }
 
     private void updateRecordList() {
         // TODO change to normal
         OrmPredicates ormPredicates = ormContext.where(RecordBean.class);
-        ormPredicates.lessThan("time", endTime + 24 * 60);
+        ormPredicates.lessThan("time", endTime + 24 * 60 * 60);
         ormPredicates.and().greaterThanOrEqualTo("time", startTime);
         if(recordMajorType != -1) {
             ormPredicates.and().equalTo("majorType", recordMajorType);
@@ -64,6 +76,18 @@ public class MainAbilitySlice extends AbilitySlice {
         records = ormContext.query(ormPredicates);
         DebugUtil.showToast(getContext(), Integer.toString(records.size()) + "  " + Long.toString(startTime));
         recordItemProvider.update(records);
+
+        int pay = 0, income = 0;
+        for(RecordBean record : records) {
+            if(record.getMajorType() == 0) {
+                pay += record.getValue();
+            } else {
+                income += record.getValue();
+            }
+        }
+        payText.setText(Integer.toString(pay));
+        incomeText.setText(Integer.toString(income));
+
     }
 
     private void initListContainer() {
@@ -87,10 +111,12 @@ public class MainAbilitySlice extends AbilitySlice {
         typeClearBtn = (Button) findComponentById(ResourceTable.Id_type_clear_btn);
         typeText = (Text) findComponentById(ResourceTable.Id_type_text);
         addandeditBtn = (Button) findComponentById(ResourceTable.Id_addandedit_btn);
-
+        searchBtn = (Button) findComponentById(ResourceTable.Id_search_btn);
+        payText = (Text) findComponentById(ResourceTable.Id_pay_text);
+        incomeText = (Text) findComponentById(ResourceTable.Id_income_text);
     }
 
-    public void setButtonListener() {
+    public void setListener() {
         startTimeModifyBtn.setClickedListener(this::pickStartTime);
         endTimeModifyBtn.setClickedListener(this::pickEndTime);
         typeModifyBtn.setClickedListener(this::pickType);
@@ -101,6 +127,10 @@ public class MainAbilitySlice extends AbilitySlice {
             updateRecordList();
         });
         addandeditBtn.setClickedListener(this::addandedit);
+        searchBtn.setClickedListener((Component component) -> {
+            updateRecordList();
+        });
+        searchBtn.setTouchFocusable(true);
     }
 
     void addandedit(Component component) {
