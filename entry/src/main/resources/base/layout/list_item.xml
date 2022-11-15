@@ -10,18 +10,20 @@
         ohos:orientation="horizontal"
 
         >
-        <Text
-            ohos:id="$+id:item_majortype_text"
+        <Image
+            ohos:id="$+id:item_majortype_img"
             ohos:height="60vp"
             ohos:width="60vp"
-            ohos:text_alignment="center"
-            ohos:text="收"
-            ohos:text_size="50vp"
+            ohos:image_src="$media:icon"
+            ohos:padding="5vp"
+            ohos:scale_mode="stretch"
+
             />
         <DirectionalLayout
             ohos:height="60vp"
             ohos:width="match_parent"
             ohos:orientation="vertical"
+            ohos:start_margin="7vp"
             >
             <DirectionalLayout
                 ohos:height="40vp"
@@ -61,7 +63,7 @@
                     ohos:width="0"
                     ohos:text="[note]"
                     ohos:text_color="$ohos:color:id_color_text_hint"
-                    ohos:weight="1"
+                    ohos:weight="0.8"
                     ohos:text_size="15vp"
                     />
                 <Text
@@ -71,7 +73,7 @@
                     ohos:text_alignment="right"
                     ohos:text_color="$ohos:color:id_color_text_hint"
                     ohos:text="[time]"
-                    ohos:weight="1"
+                    ohos:weight="1.2"
                     ohos:text_size="15vp"
                     />
 

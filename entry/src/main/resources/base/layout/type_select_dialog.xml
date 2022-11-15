@@ -15,7 +15,7 @@
             ohos:id="$+id:paytext_text"
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:text="收入"
+            ohos:text="支出"
             ohos:text_size="20vp"
             ohos:end_margin="20vp"
             />
@@ -23,7 +23,7 @@
             ohos:id="$+id:incometext_text"
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:text="支出"
+            ohos:text="收入"
             ohos:text_size="20vp"
             />
     </DirectionalLayout>

@@ -36,22 +36,22 @@
         ohos:total_weight="2"
         >
         <Button
-            ohos:id="$+id:time_pick_confirm"
-            ohos:height="50vp"
-            ohos:width="match_parent"
-            ohos:text="确认"
-            ohos:background_element="$ohos:graphic:button_bg_light"
-            ohos:text_size="17vp"
-            ohos:weight="1"
-            />
-        <Button
             ohos:id="$+id:time_pick_cancel"
             ohos:height="50vp"
             ohos:width="match_parent"
             ohos:text="取消"
-            ohos:background_element="$ohos:graphic:button_bg_light"
             ohos:text_size="17vp"
             ohos:weight="1"
             />
+        <Button
+            ohos:id="$+id:time_pick_confirm"
+            ohos:height="50vp"
+            ohos:width="match_parent"
+            ohos:text="确认"
+            ohos:text_color="$color:zfbblue2"
+            ohos:text_size="17vp"
+            ohos:weight="1"
+            />
+
     </DirectionalLayout>
 </DirectionalLayout>

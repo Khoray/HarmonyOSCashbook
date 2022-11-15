@@ -45,6 +45,7 @@ public class DialogHelper {
                 cd.destroy();
             });
             delBtn.setText("删除");
+            delBtn.setMarginTop(AttrHelper.vp2px(10, context));
             delBtn.setTextColor(Color.RED);
             delBtn.setTextSize(AttrHelper.vp2px(17, context));
             delBtn.setWidth(200);
@@ -67,6 +68,9 @@ public class DialogHelper {
             }
             noteTf.setText(record.getNote());
 
+        } else {
+            newRecord.setTime(System.currentTimeMillis());
+            timeBtn.setText(TimeUtil.formatYMDHM(System.currentTimeMillis()));
         }
 
         timeBtn.setClickedListener((Component component) -> {
@@ -83,10 +87,10 @@ public class DialogHelper {
             pickType(context, new PickTypeCallBack() {
                 @Override
                 public void pickTypeCallBack(int majorType, int minorType) {
-                    if(record.getMajorType() == 0) {
-                        typeBtn.setText("支出->" + Const.payType[record.getMinorType()]);
+                    if(majorType == 0) {
+                        typeBtn.setText("支出->" + Const.payType[minorType]);
                     } else {
-                        typeBtn.setText("收入->" + Const.incomeType[record.getMinorType()]);
+                        typeBtn.setText("收入->" + Const.incomeType[minorType]);
                     }
 
                     newRecord.setMajorType(majorType);
@@ -109,6 +113,10 @@ public class DialogHelper {
                 DebugUtil.showToast(context, "金额输入有误");
                 return;
             }
+            if(newRecord.getMajorType() == -1) {
+                DebugUtil.showToast(context, "请选择类型");
+                return;
+            }
 
             newRecord.setNote(noteTf.getText());
             recordCallBack.recordCallBack(newRecord);
@@ -117,12 +125,13 @@ public class DialogHelper {
 
         });
 
-        cd.setSize(600, MATCH_CONTENT);
+        cd.setSize(MATCH_PARENT, MATCH_CONTENT);
         cd.setContentCustomComponent(dl);
+        cd.setAlignment(LayoutAlignment.BOTTOM);
         cd.show();
     }
 
-    public static void pickFilter(Context context, FilterDialog.FilterCallBack fcb, FilterBean fb) {
+    public static void pickFilter(Context context, FilterDialog.FilterCallBack fcb, FilterBean fb, Text filterTypeText) {
         CommonDialog cd = new CommonDialog(context);
         DirectionalLayout dl = (DirectionalLayout) LayoutScatter.getInstance(context).parse(ResourceTable.Layout_filter_dialog, null, false);
         Image moreImg = (Image) dl.findComponentById(ResourceTable.Id_more_filter_btn);
@@ -130,20 +139,22 @@ public class DialogHelper {
         Image img30 = (Image) dl.findComponentById(ResourceTable.Id_monthrecord_btn);
         Image img1 = (Image) dl.findComponentById(ResourceTable.Id_dayrecord_btn);
         moreImg.setClickedListener((Component c) -> {
-            new FilterDialog(context, fcb, fb);
+            new FilterDialog(context, fcb, fb, filterTypeText);
             cd.destroy();
         });
         img365.setClickedListener((Component c) -> {
+            filterTypeText.setText("最近365天");
             fcb.filterCallBack(FilterBean.getYearFilter());
             cd.destroy();
         });
         img30.setClickedListener((Component c) -> {
-            DebugUtil.showToast(context, FilterBean.getMonthFilter().toString());
+            filterTypeText.setText("最近30天");
+//            DebugUtil.showToast(context, FilterBean.getMonthFilter().toString());
             fcb.filterCallBack(FilterBean.getMonthFilter());
             cd.destroy();
         });
         img1.setClickedListener((Component c) -> {
-
+            filterTypeText.setText("最近一天");
             fcb.filterCallBack(FilterBean.getDayFilter());
             cd.destroy();
         });
@@ -172,7 +183,8 @@ public class DialogHelper {
         cancelBtn.setClickedListener((Component component) -> {
             cd.destroy();
         });
-        cd.setSize(600, MATCH_CONTENT);
+        cd.setSize(MATCH_PARENT, MATCH_CONTENT);
+        cd.setAlignment(LayoutAlignment.BOTTOM);
         cd.setContentCustomComponent(dl);
         cd.show();
     }
@@ -197,7 +209,8 @@ public class DialogHelper {
         cancelBtn.setClickedListener((Component component) -> {
             cd.destroy();
         });
-        cd.setSize(600, MATCH_CONTENT);
+        cd.setSize(MATCH_PARENT, MATCH_CONTENT);
+        cd.setAlignment(LayoutAlignment.BOTTOM);
         cd.setContentCustomComponent(dl);
         cd.show();
     }
@@ -207,7 +220,7 @@ public class DialogHelper {
         DirectionalLayout dl = (DirectionalLayout) LayoutScatter.getInstance(context).parse(ResourceTable.Layout_type_select_dialog, null, false);
         PageSlider ps = (PageSlider) dl.findComponentById(ResourceTable.Id_page_slider);
         Text payText = (Text) dl.findComponentById(ResourceTable.Id_paytext_text);
-        payText.setTextColor(Color.BLUE);
+        payText.setTextColor(Const.zfbBlue);
         Text incomeText = (Text) dl.findComponentById(ResourceTable.Id_incometext_text);
 
         ps.addPageChangedListener(new PageSlider.PageChangedListener() {
@@ -224,22 +237,24 @@ public class DialogHelper {
             @Override
             public void onPageChosen(int i) {
                 if(i == 0) {
-                    payText.setTextColor(Color.BLUE);
+                    payText.setTextColor(Const.zfbBlue);
                     incomeText.setTextColor(Color.BLACK);
                 } else {
                     payText.setTextColor(Color.BLACK);
-                    incomeText.setTextColor(Color.BLUE);
+                    incomeText.setTextColor(Const.zfbBlue);
                 }
             }
         });
         ps.setProvider(new PageProvider(new PageProvider.ClickedListener() {
             @Override
             public void click(int majorType, int minorType) {
+                DebugUtil.showToast(context, "majortype:" + majorType + " minortype:" + minorType);
                 pickTypeCallBack.pickTypeCallBack(majorType, minorType);
                 cd.destroy();
             }
         }, context));
-        cd.setSize(600, MATCH_CONTENT);
+        cd.setSize(MATCH_PARENT, MATCH_CONTENT);
+        cd.setAlignment(LayoutAlignment.BOTTOM);
         cd.setContentCustomComponent(dl);
         cd.show();
     }

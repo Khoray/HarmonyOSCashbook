@@ -16,11 +16,12 @@ import java.util.List;
 public class RecordItemProvider extends BaseItemProvider {
     List<RecordBean> records;
 
-    public RecordItemProvider(List<RecordBean> records, Context ctx) {
+    public RecordItemProvider(List<RecordBean> records, Context ctx, ClickedListener cl) {
         this.records = records;
         this.ctx = ctx;
+        this.cl = cl;
     }
-
+    ClickedListener cl;
     Context ctx;
 
     public void update(List<RecordBean> records) {
@@ -68,7 +69,7 @@ public class RecordItemProvider extends BaseItemProvider {
             return dl;
         } else {
             DirectionalLayout dl = (DirectionalLayout) LayoutScatter.getInstance(ctx).parse(ResourceTable.Layout_list_item, null, false);
-            Text majorTypeText = (Text) dl.findComponentById(ResourceTable.Id_item_majortype_text);
+            Image majorTypeImg = (Image) dl.findComponentById(ResourceTable.Id_item_majortype_img);
             Text minorTypeText = (Text) dl.findComponentById(ResourceTable.Id_item_type_text);
             Text noteText = (Text) dl.findComponentById(ResourceTable.Id_item_note_text);
             Text moneyText = (Text) dl.findComponentById(ResourceTable.Id_item_money_text);
@@ -76,12 +77,12 @@ public class RecordItemProvider extends BaseItemProvider {
 
 
             if(nowRecord.getMajorType() == 0) {
-                majorTypeText.setText("支");
+                majorTypeImg.setPixelMap(Const.payImg[nowRecord.getMinorType()]);
                 minorTypeText.setText(Const.payType[nowRecord.getMinorType()]);
                 moneyText.setText("-" + Double.toString(nowRecord.getValue()));
                 moneyText.setTextColor(new Color(Color.rgb(20, 186, 138)));
             } else {
-                majorTypeText.setText("收");
+                majorTypeImg.setPixelMap(Const.incomeImg[nowRecord.getMinorType()]);
                 minorTypeText.setText(Const.incomeType[nowRecord.getMinorType()]);
                 moneyText.setText("+" + Double.toString(nowRecord.getValue()));
                 moneyText.setTextColor(new Color(Color.rgb(241, 83, 58)));
@@ -90,6 +91,9 @@ public class RecordItemProvider extends BaseItemProvider {
             noteText.setText(nowRecord.getNote());
 
             timeText.setText(TimeUtil.formatYMDHM(nowRecord.getTime()));
+            dl.setClickedListener((Component c) -> {
+                cl.click(nowRecord);
+            });
 //        componentContainer.addComponent(dl);
             return dl;
         }

@@ -3,6 +3,7 @@
     xmlns:ohos="http://schemas.huawei.com/res/ohos"
     ohos:height="match_content"
     ohos:width="match_parent"
+    ohos:bottom_margin="10vp"
     ohos:orientation="vertical">
     <DirectionalLayout
         ohos:height="60vp"
@@ -45,43 +46,50 @@
 
                 ohos:width="match_parent"
                 ohos:orientation="horizontal"
-                ohos:total_weight="4"
                 >
                 <Text
                     ohos:height="match_parent"
-                    ohos:width="0"
+                    ohos:width="match_content"
                     ohos:text="支出"
+                    ohos:end_padding="10vp"
                     ohos:text_color="#14BA8A"
-                    ohos:weight="0.6"
                     ohos:text_size="20vp"
                     />
                 <Text
                     ohos:id="$+id:title_pay_text"
                     ohos:height="match_parent"
-                    ohos:width="0"
+                    ohos:width="match_content"
                     ohos:text_alignment="center"
                     ohos:text_color="#14BA8A"
                     ohos:text="[0]"
-                    ohos:weight="1.4"
+                    ohos:end_padding="10vp"
                     ohos:text_size="20vp"
                     />
                 <Text
                     ohos:height="match_parent"
-                    ohos:width="0"
+                    ohos:width="match_content"
+                    ohos:text_alignment="center"
+                    ohos:text_color="#8B8B8A"
+                    ohos:text="|"
+                    ohos:end_padding="10vp"
+                    ohos:text_size="20vp"
+                    />
+                <Text
+                    ohos:height="match_parent"
+                    ohos:width="match_content"
                     ohos:text_color="#F1533A"
                     ohos:text="收入"
-                    ohos:weight="0.6"
+                    ohos:end_padding="10vp"
                     ohos:text_size="20vp"
                     />
                 <Text
                     ohos:id="$+id:title_income_text"
                     ohos:height="match_parent"
-                    ohos:width="0"
-
+                    ohos:width="match_content"
+                    ohos:end_padding="10vp"
                     ohos:text_color="#F1533A"
                     ohos:text_alignment="center"
                     ohos:text="[0]"
-                    ohos:weight="1.4"
                     ohos:text_size="20vp"
                     />
 

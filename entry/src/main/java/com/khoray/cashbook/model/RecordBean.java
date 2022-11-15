@@ -19,6 +19,9 @@ public class RecordBean extends OrmObject {
     public double pay, income;
 
     public RecordBean() {
+        time = -1;
+        majorType = -1;
+        minorType = -1;
     }
 
     public RecordBean(RecordBean record) {
@@ -30,8 +33,13 @@ public class RecordBean extends OrmObject {
         this.note = record.note;
     }
 
-    public RecordBean(long time) {
-        this.time = time;
+    public void copy(RecordBean record) {
+        this.recordId = record.recordId;
+        this.majorType = record.majorType;
+        this.minorType = record.minorType;
+        this.time = record.time;
+        this.value = record.value;
+        this.note = record.note;
     }
 
     public Integer getRecordId() {

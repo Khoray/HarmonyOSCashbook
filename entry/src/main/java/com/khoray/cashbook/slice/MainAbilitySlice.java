@@ -4,21 +4,19 @@ import com.khoray.cashbook.ResourceTable;
 import com.khoray.cashbook.model.*;
 import com.khoray.cashbook.provider.RecordItemProvider;
 import com.khoray.cashbook.utils.DebugUtil;
-import com.khoray.cashbook.utils.TimeUtil;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
 import ohos.agp.components.*;
 import ohos.data.DatabaseHelper;
 import ohos.data.orm.OrmContext;
-import ohos.data.orm.OrmPredicates;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 public class MainAbilitySlice extends AbilitySlice {
-    FilterBean currentFilter = new FilterBean();
-    Text payText, incomeText;
+    FilterBean currentFilter = FilterBean.getDayFilter();
+    Text payText, incomeText, totalText, filterTypeText;
 //    TextField searchField;
     Button addandeditBtn, filterButton;
     ListContainer listContainer;
@@ -35,15 +33,15 @@ public class MainAbilitySlice extends AbilitySlice {
 
         initDatabase();
 
-        getComponents();
-        initListContainer();
 
+        getComponents();
+        updateRecordList();
+        initListContainer();
 
         setListener();
 
-        updateRecordList();
-    }
 
+    }
     private void updateRecordList() {
         List<RecordBean> tmpRecords = ormContext.query(currentFilter.generatePredicates(ormContext));
         tmpRecords.sort(new Comparator<RecordBean>() {
@@ -87,15 +85,41 @@ public class MainAbilitySlice extends AbilitySlice {
             beg = ed;
         }
 
-
+        DebugUtil.showToast(getContext(), "size:" + records.size());
         payText.setText(Double.toString(totalPay));
         incomeText.setText(Double.toString(totalIncome));
-        recordItemProvider.update(records);
+        totalText.setText(Double.toString(totalIncome - totalPay));
+    }
 
+    private void updateRecordAndListContainer() {
+        updateRecordList();
+        recordItemProvider.update(records);
     }
 
     private void initListContainer() {
-        recordItemProvider = new RecordItemProvider(records, getContext());
+        recordItemProvider = new RecordItemProvider(records, getContext(), new RecordItemProvider.ClickedListener() {
+            @Override
+            public void click(RecordBean record) {
+                DialogHelper.addandeditRecord(getContext(), new DialogHelper.RecordCallBack() {
+                    @Override
+                    public void recordCallBack(RecordBean record) {
+
+                        List<RecordBean> ret = ormContext.query((ormContext.where(RecordBean.class)).equalTo("recordId", record.getRecordId()));
+                        ret.get(0).copy(record);
+                        ormContext.update(ret.get(0));
+                        ormContext.flush();
+                        updateRecordAndListContainer();
+                    }
+
+                    @Override
+                    public void recordDelCallBack(RecordBean record) {
+                        ormContext.delete(record);
+                        ormContext.flush();
+                        updateRecordAndListContainer();
+                    }
+                }, "修改账目", true, record);
+            }
+        });
         listContainer.setItemProvider(recordItemProvider);
     }
 
@@ -119,6 +143,8 @@ public class MainAbilitySlice extends AbilitySlice {
 //        searchBtn = (Button) findComponentById(ResourceTable.Id_search_btn);
         payText = (Text) findComponentById(ResourceTable.Id_pay_text);
         incomeText = (Text) findComponentById(ResourceTable.Id_income_text);
+        totalText = (Text) findComponentById(ResourceTable.Id_total_rest);
+        filterTypeText = (Text) findComponentById(ResourceTable.Id_filter_type_text);
     }
 
     public void setListener() {
@@ -136,9 +162,9 @@ public class MainAbilitySlice extends AbilitySlice {
                 @Override
                 public void filterCallBack(FilterBean fb) {
                     currentFilter = fb;
-                    updateRecordList();
+                    updateRecordAndListContainer();
                 }
-            }, currentFilter);
+            }, currentFilter, filterTypeText);
         });
         addandeditBtn.setClickedListener(this::addandedit);
 //        searchBtn.setClickedListener((Component component) -> {
@@ -154,14 +180,14 @@ public class MainAbilitySlice extends AbilitySlice {
                 boolean ok = ormContext.insert(record);
                 boolean okflush = ormContext.flush();
                 DebugUtil.showToast(getContext(), "ok:" + Boolean.toString(ok) + " okflush:" + Boolean.toString(okflush));
-                updateRecordList();
+                updateRecordAndListContainer();
             }
 
             @Override
             public void recordDelCallBack(RecordBean record) {
 
             }
-        }, "记一笔账", false, new RecordBean(-1));
+        }, "记一笔账", false, new RecordBean());
     }
 
 

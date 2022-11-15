@@ -16,12 +16,13 @@ public class FilterDialog {
     CommonDialog cd;
     DirectionalLayout dl;
     Button confirmBtn, cancelBtn, startTimeModify, endTimeModify, typeModify, valueModify;
-    Text startTimeText, endTimeText, typeText;
+    Text startTimeText, endTimeText, typeText, filterTypeText;
     TextField noteTextField, lowTf, highTf;
     FilterCallBack filterCallBack;
     FilterBean currentFilter;
 
-    public FilterDialog(Context context, FilterCallBack filterCallBack, FilterBean currentFilter) {
+    public FilterDialog(Context context, FilterCallBack filterCallBack, FilterBean currentFilter, Text filterTypeText) {
+        this.filterTypeText = filterTypeText;
         this.context = context;
         this.filterCallBack = filterCallBack;
         this.currentFilter = new FilterBean(currentFilter);
@@ -94,6 +95,7 @@ public class FilterDialog {
                 return;
             }
             currentFilter.note = noteTextField.getText();
+            filterTypeText.setText("自定义筛选");
             filterCallBack.filterCallBack(currentFilter);
             cd.destroy();
         });
@@ -108,7 +110,7 @@ public class FilterDialog {
             startTimeText.setText("-");
         });
         endTimeModify.setClickedListener((Component c) -> {
-            currentFilter.startTime = -1;
+            currentFilter.endTime = -1;
             endTimeText.setText("-");
         });
         typeModify.setClickedListener((Component component) -> {

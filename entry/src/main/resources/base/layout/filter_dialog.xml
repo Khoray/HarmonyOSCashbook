@@ -10,6 +10,7 @@
         ohos:orientation="horizontal"
         ohos:layout_alignment="horizontal_center"
         ohos:alignment="center"
+        ohos:bottom_margin="15fp"
         ohos:width="match_parent">
 
         <DirectionalLayout
