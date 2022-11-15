@@ -5,8 +5,12 @@ import com.khoray.cashbook.model.Const;
 import com.khoray.cashbook.model.RecordBean;
 import com.khoray.cashbook.utils.TimeUtil;
 import ohos.agp.components.*;
+import ohos.agp.utils.Color;
 import ohos.app.Context;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class RecordItemProvider extends BaseItemProvider {
@@ -47,28 +51,49 @@ public class RecordItemProvider extends BaseItemProvider {
     @Override
     public Component getComponent(int i, Component component, ComponentContainer componentContainer) {
         RecordBean nowRecord = records.get(i);
-        DirectionalLayout dl = (DirectionalLayout) LayoutScatter.getInstance(ctx).parse(ResourceTable.Layout_list_item, null, false);
-        Text majorTypeText = (Text) dl.findComponentById(ResourceTable.Id_item_majortype_text);
-        Text minorTypeText = (Text) dl.findComponentById(ResourceTable.Id_item_type_text);
-        Text noteText = (Text) dl.findComponentById(ResourceTable.Id_item_note_text);
-        Text moneyText = (Text) dl.findComponentById(ResourceTable.Id_item_money_text);
-        Text timeText = (Text) dl.findComponentById(ResourceTable.Id_item_time_text);
+        if(nowRecord.isTitle) {
+            DirectionalLayout dl = (DirectionalLayout) LayoutScatter.getInstance(ctx).parse(ResourceTable.Layout_list_title, null, false);
+            Text dayText = (Text) dl.findComponentById(ResourceTable.Id_title_day_text);
+            Text ymText = (Text) dl.findComponentById(ResourceTable.Id_title_ym_text);
+            Text payText = (Text) dl.findComponentById(ResourceTable.Id_title_pay_text);
+            Text incomeText = (Text) dl.findComponentById(ResourceTable.Id_title_income_text);
 
-
-        if(nowRecord.getMajorType() == 0) {
-            majorTypeText.setText("支");
-            minorTypeText.setText(Const.payType[nowRecord.getMinorType()]);
-            moneyText.setText("-" + Double.toString(nowRecord.getValue()));
+            String year = (new SimpleDateFormat("yyyy")).format(new Date(nowRecord.getTime()));
+            String month = (new SimpleDateFormat("MM")).format(new Date(nowRecord.getTime()));
+            String day = (new SimpleDateFormat("dd")).format(new Date(nowRecord.getTime()));
+            ymText.setText(year + "." + month);
+            dayText.setText(day);
+            payText.setText(Double.toString(nowRecord.pay));
+            incomeText.setText(Double.toString(nowRecord.income));
+            return dl;
         } else {
-            majorTypeText.setText("收");
-            minorTypeText.setText(Const.incomeType[nowRecord.getMinorType()]);
-            moneyText.setText("+" + Double.toString(nowRecord.getValue()));
+            DirectionalLayout dl = (DirectionalLayout) LayoutScatter.getInstance(ctx).parse(ResourceTable.Layout_list_item, null, false);
+            Text majorTypeText = (Text) dl.findComponentById(ResourceTable.Id_item_majortype_text);
+            Text minorTypeText = (Text) dl.findComponentById(ResourceTable.Id_item_type_text);
+            Text noteText = (Text) dl.findComponentById(ResourceTable.Id_item_note_text);
+            Text moneyText = (Text) dl.findComponentById(ResourceTable.Id_item_money_text);
+            Text timeText = (Text) dl.findComponentById(ResourceTable.Id_item_time_text);
+
+
+            if(nowRecord.getMajorType() == 0) {
+                majorTypeText.setText("支");
+                minorTypeText.setText(Const.payType[nowRecord.getMinorType()]);
+                moneyText.setText("-" + Double.toString(nowRecord.getValue()));
+                moneyText.setTextColor(new Color(Color.rgb(20, 186, 138)));
+            } else {
+                majorTypeText.setText("收");
+                minorTypeText.setText(Const.incomeType[nowRecord.getMinorType()]);
+                moneyText.setText("+" + Double.toString(nowRecord.getValue()));
+                moneyText.setTextColor(new Color(Color.rgb(241, 83, 58)));
+            }
+
+            noteText.setText(nowRecord.getNote());
+
+            timeText.setText(TimeUtil.formatYMDHM(nowRecord.getTime()));
+//        componentContainer.addComponent(dl);
+            return dl;
         }
 
-        noteText.setText(nowRecord.getNote());
 
-        timeText.setText(TimeUtil.formatYMDHM(nowRecord.getTime()));
-//        componentContainer.addComponent(dl);
-        return dl;
     }
 }

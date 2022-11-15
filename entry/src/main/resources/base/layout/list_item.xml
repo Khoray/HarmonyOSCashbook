@@ -3,8 +3,6 @@
     xmlns:ohos="http://schemas.huawei.com/res/ohos"
     ohos:height="match_content"
     ohos:width="match_parent"
-    ohos:margin="2vp"
-    ohos:background_element="#2000"
     ohos:orientation="vertical">
     <DirectionalLayout
         ohos:height="60vp"
@@ -26,7 +24,7 @@
             ohos:orientation="vertical"
             >
             <DirectionalLayout
-                ohos:height="30vp"
+                ohos:height="40vp"
                 ohos:width="match_parent"
                 ohos:orientation="horizontal"
                 ohos:total_weight="2"
@@ -37,7 +35,7 @@
                     ohos:width="0"
                     ohos:text="[type]"
                     ohos:weight="1"
-                    ohos:text_size="20vp"
+                    ohos:text_size="35vp"
                     />
                 <Text
                     ohos:id="$+id:item_money_text"
@@ -46,13 +44,13 @@
                     ohos:text_alignment="right"
                     ohos:text="[+-money]"
                     ohos:weight="1"
-                    ohos:text_size="20vp"
+                    ohos:text_size="35vp"
                     />
 
 
             </DirectionalLayout>
             <DirectionalLayout
-                ohos:height="40vp"
+                ohos:height="20vp"
                 ohos:width="match_parent"
                 ohos:orientation="horizontal"
                 ohos:total_weight="2"
@@ -62,17 +60,19 @@
                     ohos:height="match_parent"
                     ohos:width="0"
                     ohos:text="[note]"
+                    ohos:text_color="$ohos:color:id_color_text_hint"
                     ohos:weight="1"
-                    ohos:text_size="20vp"
+                    ohos:text_size="15vp"
                     />
                 <Text
                     ohos:id="$+id:item_time_text"
                     ohos:height="match_parent"
                     ohos:width="0"
                     ohos:text_alignment="right"
+                    ohos:text_color="$ohos:color:id_color_text_hint"
                     ohos:text="[time]"
                     ohos:weight="1"
-                    ohos:text_size="20vp"
+                    ohos:text_size="15vp"
                     />
 
 

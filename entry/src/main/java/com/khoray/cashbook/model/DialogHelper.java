@@ -6,10 +6,12 @@ import com.khoray.cashbook.utils.DebugUtil;
 import com.khoray.cashbook.utils.TimeUtil;
 import ohos.agp.components.*;
 import ohos.agp.utils.Color;
+import ohos.agp.utils.LayoutAlignment;
 import ohos.agp.window.dialog.CommonDialog;
 import ohos.app.Context;
 
 import static ohos.agp.components.ComponentContainer.LayoutConfig.MATCH_CONTENT;
+import static ohos.agp.components.ComponentContainer.LayoutConfig.MATCH_PARENT;
 
 public class DialogHelper {
 
@@ -24,6 +26,8 @@ public class DialogHelper {
         void recordCallBack(RecordBean record);
         void recordDelCallBack(RecordBean record);
     }
+
+
 
     public static void addandeditRecord(Context context, RecordCallBack recordCallBack, String title, boolean canDelete, RecordBean record) {
         RecordBean newRecord = new RecordBean(record);
@@ -118,6 +122,38 @@ public class DialogHelper {
         cd.show();
     }
 
+    public static void pickFilter(Context context, FilterDialog.FilterCallBack fcb, FilterBean fb) {
+        CommonDialog cd = new CommonDialog(context);
+        DirectionalLayout dl = (DirectionalLayout) LayoutScatter.getInstance(context).parse(ResourceTable.Layout_filter_dialog, null, false);
+        Image moreImg = (Image) dl.findComponentById(ResourceTable.Id_more_filter_btn);
+        Image img365 = (Image) dl.findComponentById(ResourceTable.Id_yearrecord_btn);
+        Image img30 = (Image) dl.findComponentById(ResourceTable.Id_monthrecord_btn);
+        Image img1 = (Image) dl.findComponentById(ResourceTable.Id_dayrecord_btn);
+        moreImg.setClickedListener((Component c) -> {
+            new FilterDialog(context, fcb, fb);
+            cd.destroy();
+        });
+        img365.setClickedListener((Component c) -> {
+            fcb.filterCallBack(FilterBean.getYearFilter());
+            cd.destroy();
+        });
+        img30.setClickedListener((Component c) -> {
+            DebugUtil.showToast(context, FilterBean.getMonthFilter().toString());
+            fcb.filterCallBack(FilterBean.getMonthFilter());
+            cd.destroy();
+        });
+        img1.setClickedListener((Component c) -> {
+
+            fcb.filterCallBack(FilterBean.getDayFilter());
+            cd.destroy();
+        });
+
+        cd.setSize(MATCH_PARENT, MATCH_CONTENT);
+        cd.setAlignment(LayoutAlignment.BOTTOM);
+        cd.setContentCustomComponent(dl);
+        cd.show();
+    }
+
     public static void pickDate(Context context, PickTimeCallBack confirmPickTime) {
         CommonDialog cd = new CommonDialog(context);
         DirectionalLayout dl = (DirectionalLayout) LayoutScatter.getInstance(context).parse(ResourceTable.Layout_date_pick_dialog, null, false);
@@ -165,8 +201,6 @@ public class DialogHelper {
         cd.setContentCustomComponent(dl);
         cd.show();
     }
-
-
 
     public static void pickType(Context context, PickTypeCallBack pickTypeCallBack) {
         CommonDialog cd = new CommonDialog(context);

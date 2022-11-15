@@ -6,15 +6,17 @@ import ohos.data.orm.annotation.Entity;
 import ohos.data.orm.annotation.Index;
 import ohos.data.orm.annotation.PrimaryKey;
 
-@Entity(tableName = "record", ignoredColumns = {},
+@Entity(tableName = "record", ignoredColumns = {"isTitle", "pay", "income"},
         indices = {@Index(value = {"recordId"}, name = "name_index", unique = true)})
 public class RecordBean extends OrmObject {
     @PrimaryKey(autoGenerate = true)
     private Integer recordId;
     private int majorType, minorType;
     private long time;
-    private Double value;
+    private double value;
     private String note;
+    public boolean isTitle = false;
+    public double pay, income;
 
     public RecordBean() {
     }

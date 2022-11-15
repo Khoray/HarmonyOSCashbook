@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_content"
+    ohos:width="match_parent"
+    ohos:orientation="vertical">
+    <DirectionalLayout
+        ohos:height="60vp"
+        ohos:width="match_parent"
+        ohos:orientation="horizontal"
+
+        >
+        <DirectionalLayout
+            ohos:height="60vp"
+            ohos:width="60vp"
+            ohos:orientation="vertical"
+            >
+            <Text
+                ohos:id="$+id:title_day_text"
+                ohos:height="40vp"
+                ohos:width="60vp"
+                ohos:text_alignment="right"
+                ohos:text="15"
+                ohos:text_size="35vp"
+                />
+            <Text
+                ohos:id="$+id:title_ym_text"
+                ohos:height="20vp"
+                ohos:width="60vp"
+                ohos:text_alignment="right"
+                ohos:text="2022.11"
+                ohos:text_size="15vp"
+                />
+
+        </DirectionalLayout>
+        <DirectionalLayout
+            ohos:height="60vp"
+            ohos:width="match_parent"
+            ohos:orientation="vertical"
+            ohos:alignment="bottom"
+            ohos:start_margin="15vp"
+            >
+            <DirectionalLayout
+                ohos:height="60vp"
+
+                ohos:width="match_parent"
+                ohos:orientation="horizontal"
+                ohos:total_weight="4"
+                >
+                <Text
+                    ohos:height="match_parent"
+                    ohos:width="0"
+                    ohos:text="支出"
+                    ohos:text_color="#14BA8A"
+                    ohos:weight="0.6"
+                    ohos:text_size="20vp"
+                    />
+                <Text
+                    ohos:id="$+id:title_pay_text"
+                    ohos:height="match_parent"
+                    ohos:width="0"
+                    ohos:text_alignment="center"
+                    ohos:text_color="#14BA8A"
+                    ohos:text="[0]"
+                    ohos:weight="1.4"
+                    ohos:text_size="20vp"
+                    />
+                <Text
+                    ohos:height="match_parent"
+                    ohos:width="0"
+                    ohos:text_color="#F1533A"
+                    ohos:text="收入"
+                    ohos:weight="0.6"
+                    ohos:text_size="20vp"
+                    />
+                <Text
+                    ohos:id="$+id:title_income_text"
+                    ohos:height="match_parent"
+                    ohos:width="0"
+
+                    ohos:text_color="#F1533A"
+                    ohos:text_alignment="center"
+                    ohos:text="[0]"
+                    ohos:weight="1.4"
+                    ohos:text_size="20vp"
+                    />
+
+
+
+            </DirectionalLayout>
+
+
+        </DirectionalLayout>
+    </DirectionalLayout>
+    <Text
+        ohos:width="match_parent"
+        ohos:height="1vp"
+        ohos:text_size="18fp"
+        ohos:top_margin="2vp"
+        ohos:bottom_margin="2vp"
+        ohos:background_element="#220000ff"/>
+</DirectionalLayout>
