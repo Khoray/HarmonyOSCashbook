@@ -64,8 +64,8 @@ public class RecordItemProvider extends BaseItemProvider {
             String day = (new SimpleDateFormat("dd")).format(new Date(nowRecord.getTime()));
             ymText.setText(year + "." + month);
             dayText.setText(day);
-            payText.setText(Double.toString(nowRecord.pay));
-            incomeText.setText(Double.toString(nowRecord.income));
+            payText.setText(String.format("%.2f", nowRecord.pay));
+            incomeText.setText(String.format("%.2f", nowRecord.income));
             return dl;
         } else {
             DirectionalLayout dl = (DirectionalLayout) LayoutScatter.getInstance(ctx).parse(ResourceTable.Layout_list_item, null, false);
@@ -79,18 +79,18 @@ public class RecordItemProvider extends BaseItemProvider {
             if(nowRecord.getMajorType() == 0) {
                 majorTypeImg.setPixelMap(Const.payImg[nowRecord.getMinorType()]);
                 minorTypeText.setText(Const.payType[nowRecord.getMinorType()]);
-                moneyText.setText("-" + Double.toString(nowRecord.getValue()));
+                moneyText.setText("-" + String.format("%.2f",nowRecord.getValue()));
                 moneyText.setTextColor(new Color(Color.rgb(20, 186, 138)));
             } else {
                 majorTypeImg.setPixelMap(Const.incomeImg[nowRecord.getMinorType()]);
                 minorTypeText.setText(Const.incomeType[nowRecord.getMinorType()]);
-                moneyText.setText("+" + Double.toString(nowRecord.getValue()));
+                moneyText.setText("+" + String.format("%.2f",nowRecord.getValue()));
                 moneyText.setTextColor(new Color(Color.rgb(241, 83, 58)));
             }
 
             noteText.setText(nowRecord.getNote());
 
-            timeText.setText(TimeUtil.formatYMDHM(nowRecord.getTime()));
+            timeText.setText(TimeUtil.formatHM(nowRecord.getTime()));
             dl.setClickedListener((Component c) -> {
                 cl.click(nowRecord);
             });

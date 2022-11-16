@@ -10,6 +10,14 @@
   "deviceConfig": {
   },
   "module": {
+    "metaData": {
+      "customizeData": [
+        {
+          "name": "hwc-theme",
+          "value": "androidhwext:style/Theme.Emui.Light.NoTitleBar"
+        }
+      ]
+    },
     "package": "com.khoray.cashbook",
     "name": ".MyApplication",
     "mainAbility": "com.khoray.cashbook.MainAbility",

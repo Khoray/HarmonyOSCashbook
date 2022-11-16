@@ -3,6 +3,8 @@
     xmlns:ohos="http://schemas.huawei.com/res/ohos"
     ohos:height="match_content"
     ohos:width="match_parent"
+    ohos:start_padding="10vp"
+    ohos:end_padding="10vp"
     ohos:orientation="vertical">
     <DirectionalLayout
         ohos:height="60vp"
@@ -26,7 +28,8 @@
             ohos:start_margin="7vp"
             >
             <DirectionalLayout
-                ohos:height="40vp"
+                ohos:top_margin="6vp"
+                ohos:height="match_content"
                 ohos:width="match_parent"
                 ohos:orientation="horizontal"
                 ohos:total_weight="2"
@@ -37,7 +40,7 @@
                     ohos:width="0"
                     ohos:text="[type]"
                     ohos:weight="1"
-                    ohos:text_size="35vp"
+                    ohos:text_size="20vp"
                     />
                 <Text
                     ohos:id="$+id:item_money_text"
@@ -46,36 +49,44 @@
                     ohos:text_alignment="right"
                     ohos:text="[+-money]"
                     ohos:weight="1"
-                    ohos:text_size="35vp"
+                    ohos:text_size="20vp"
                     />
 
 
             </DirectionalLayout>
             <DirectionalLayout
-                ohos:height="20vp"
+                ohos:top_margin="1vp"
+                ohos:height="match_content"
                 ohos:width="match_parent"
                 ohos:orientation="horizontal"
-                ohos:total_weight="2"
                 >
-                <Text
-                    ohos:id="$+id:item_note_text"
-                    ohos:height="match_parent"
-                    ohos:width="0"
-                    ohos:text="[note]"
-                    ohos:text_color="$ohos:color:id_color_text_hint"
-                    ohos:weight="0.8"
-                    ohos:text_size="15vp"
-                    />
                 <Text
                     ohos:id="$+id:item_time_text"
                     ohos:height="match_parent"
-                    ohos:width="0"
+                    ohos:width="match_content"
                     ohos:text_alignment="right"
                     ohos:text_color="$ohos:color:id_color_text_hint"
                     ohos:text="[time]"
-                    ohos:weight="1.2"
                     ohos:text_size="15vp"
                     />
+                <Text
+                    ohos:height="match_parent"
+                    ohos:width="match_content"
+                    ohos:start_margin="5vp"
+                    ohos:text="|"
+                    ohos:text_color="$ohos:color:id_color_text_hint"
+                    ohos:text_size="15vp"
+                    />
+                <Text
+                    ohos:id="$+id:item_note_text"
+                    ohos:height="match_parent"
+                    ohos:width="match_content"
+                    ohos:start_margin="5vp"
+                    ohos:text="[note]"
+                    ohos:text_color="$ohos:color:id_color_text_hint"
+                    ohos:text_size="15vp"
+                    />
+
 
 
             </DirectionalLayout>

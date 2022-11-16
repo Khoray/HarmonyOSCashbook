@@ -4,6 +4,7 @@ import com.khoray.cashbook.ResourceTable;
 import com.khoray.cashbook.model.*;
 import com.khoray.cashbook.provider.RecordItemProvider;
 import com.khoray.cashbook.utils.DebugUtil;
+import com.khoray.cashbook.utils.TimeUtil;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
 import ohos.agp.components.*;
@@ -13,6 +14,7 @@ import ohos.data.orm.OrmContext;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 
 public class MainAbilitySlice extends AbilitySlice {
     FilterBean currentFilter = FilterBean.getDayFilter();
@@ -32,8 +34,8 @@ public class MainAbilitySlice extends AbilitySlice {
 
 
         initDatabase();
-
-
+        addDebugDatas();
+        
         getComponents();
         updateRecordList();
         initListContainer();
@@ -42,6 +44,21 @@ public class MainAbilitySlice extends AbilitySlice {
 
 
     }
+
+    private void addDebugDatas() {
+        Random random = new Random();
+        for(int i = 0; i < 200; i++) {
+            RecordBean rb = new RecordBean();
+            rb.setTime(random.nextLong() % (Const.dayMilllis * 20) - Const.dayMilllis * 20 + System.currentTimeMillis());
+            rb.setValue(random.nextInt(1000) + (random.nextBoolean() ? 0.5 : 0));
+            rb.setMajorType((random.nextBoolean() ? 0 : 1));
+            rb.setMinorType((random.nextInt(9)));
+            rb.setNote("debug");
+            ormContext.insert(rb);
+        }
+        ormContext.flush();
+    }
+
     private void updateRecordList() {
         List<RecordBean> tmpRecords = ormContext.query(currentFilter.generatePredicates(ormContext));
         tmpRecords.sort(new Comparator<RecordBean>() {
@@ -65,7 +82,10 @@ public class MainAbilitySlice extends AbilitySlice {
             int ed = beg;
             RecordBean rb = new RecordBean();
             rb.isTitle = true;
-            while(ed < tmpRecords.size() && tmpRecords.get(ed).getTime() / Const.dayMilllis == tmpRecords.get(beg).getTime() / Const.dayMilllis) {
+            String d1 = TimeUtil.formatYMD(tmpRecords.get(beg).getTime());
+            while(ed < tmpRecords.size()) {
+                String d2 = TimeUtil.formatYMD(tmpRecords.get(ed).getTime());
+                if(!d1.equals(d2)) break;
                 double value = tmpRecords.get(ed).getValue();
                 if(tmpRecords.get(ed).getMajorType() == 0) {
                     rb.pay += value;
@@ -73,7 +93,6 @@ public class MainAbilitySlice extends AbilitySlice {
                 } else {
                     rb.income += value;
                     totalIncome += value;
-
                 }
                 ed++;
             }
@@ -86,9 +105,9 @@ public class MainAbilitySlice extends AbilitySlice {
         }
 
         DebugUtil.showToast(getContext(), "size:" + records.size());
-        payText.setText(Double.toString(totalPay));
-        incomeText.setText(Double.toString(totalIncome));
-        totalText.setText(Double.toString(totalIncome - totalPay));
+        payText.setText(String.format("%.2f", totalPay));
+        incomeText.setText(String.format("%.2f", totalIncome));
+        totalText.setText(String.format("%.2f", totalIncome - totalPay));
     }
 
     private void updateRecordAndListContainer() {

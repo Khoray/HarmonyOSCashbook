@@ -20,14 +20,31 @@
                    ohos:orientation="vertical"
                    ohos:height="match_content">
 
-    <Text
-        ohos:id="$+id:addandedit_title"
-        ohos:width="match_content"
-        ohos:top_margin="5vp"
+    <DirectionalLayout
         ohos:height="match_content"
-        ohos:text="[添加/修改]项目"
-        ohos:text_size="20fp"
-        ohos:text_color="#000000"/>
+        ohos:width="match_parent"
+        ohos:orientation="horizontal"
+        ohos:top_margin="5vp"
+        ohos:alignment="horizontal_center"
+        >
+        <Image
+            ohos:height="22vp"
+            ohos:width="22vp"
+            ohos:scale_mode="stretch"
+            ohos:image_src="$media:note"
+            />
+        <Text
+            ohos:id="$+id:addandedit_title"
+            ohos:width="match_content"
+            ohos:height="match_content"
+            ohos:text_alignment="center"
+            ohos:start_margin="10vp"
+            ohos:text="[添加/修改]项目"
+            ohos:text_size="20fp"
+            ohos:text_color="#000000"/>
+
+    </DirectionalLayout>
+
 
     <Text
         ohos:width="match_parent"
@@ -35,7 +52,7 @@
         ohos:text_size="18fp"
         ohos:top_margin="5vp"
         ohos:bottom_margin="5vp"
-        ohos:background_element="#220000ff"/>
+        ohos:background_element="$graphic:button_bg_zfbblue"/>
 
     <DirectionalLayout
         ohos:id="$+id:addandedit_main_layout"

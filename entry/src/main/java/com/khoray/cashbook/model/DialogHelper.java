@@ -195,7 +195,7 @@ public class DialogHelper {
         Button confirmBtn = (Button) dl.findComponentById(ResourceTable.Id_time_pick_confirm);
         DatePicker tp = (DatePicker) dl.findComponentById(ResourceTable.Id_time_date_pick);
         TimePicker pt = (TimePicker) dl.findComponentById(ResourceTable.Id_time_time_pick);
-
+        pt.showSecond(false);
         // 确认按钮
         confirmBtn.setClickedListener((Component component) -> {
             int year = tp.getYear();

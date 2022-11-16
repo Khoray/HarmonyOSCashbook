@@ -10,8 +10,8 @@
         ohos:height="match_content"
         ohos:text_size="17vp"
         ohos:width="match_parent"
-        ohos:background_element="#C89FDEFF">
-    </DatePicker>
+        ohos:selected_text_color="$color:zfbblue2"
+        />
     <DirectionalLayout
         ohos:height="match_content"
         ohos:width="match_parent"

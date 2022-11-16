@@ -19,8 +19,8 @@
             ohos:height="match_content"
             ohos:width="match_content"
             ohos:text="总计"
-            ohos:text_size="20vp"
-            ohos:text_color="#FFD6D6D6"
+            ohos:text_size="17vp"
+            ohos:text_color="#FFE6E6E6"
             />
         <Text
             ohos:id="$+id:total_rest"
@@ -28,7 +28,7 @@
             ohos:width="match_content"
             ohos:top_margin="5vp"
             ohos:text="[0]"
-            ohos:text_size="40vp"
+            ohos:text_size="30vp"
             ohos:text_color="#FFFFFF"
             />
         <DirectionalLayout
@@ -42,8 +42,8 @@
                 ohos:height="match_content"
                 ohos:width="match_content"
                 ohos:text="总支出"
-                ohos:text_color="#FFD6D6D6"
-                ohos:text_size="20vp"
+                ohos:text_color="#FFE6E6E6"
+                ohos:text_size="17vp"
                 />
             <Text
                 ohos:start_margin="15vp"
@@ -53,23 +53,23 @@
                 ohos:layout_alignment="center"
                 ohos:text="[0]"
                 ohos:text_color="#FFF"
-                ohos:text_size="20vp"
+                ohos:text_size="18vp"
                 />
             <Text
                 ohos:start_margin="15vp"
                 ohos:height="match_content"
                 ohos:width="match_content"
-                ohos:text_color="#FFD6D6D6"
+                ohos:text_color="#FFE6E6E6"
                 ohos:text="|"
-                ohos:text_size="20vp"
+                ohos:text_size="17vp"
                 />
             <Text
                 ohos:start_margin="15vp"
                 ohos:height="match_content"
                 ohos:width="match_content"
-                ohos:text_color="#FFD6D6D6"
+                ohos:text_color="#FFE6E6E6"
                 ohos:text="总收入"
-                ohos:text_size="20vp"
+                ohos:text_size="17vp"
                 />
             <Text
                 ohos:start_margin="15vp"
@@ -78,7 +78,7 @@
                 ohos:width="match_content"
                 ohos:text_color="#FFF"
                 ohos:text="[0]"
-                ohos:text_size="20vp"
+                ohos:text_size="18vp"
                 />
 
         </DirectionalLayout>
@@ -89,15 +89,17 @@
         ohos:height="match_content"
         ohos:width="match_parent"
         ohos:background_element="#05000000"
-        ><Text
+        >
+
+        <Text
         ohos:id="$+id:filter_type_text"
         ohos:height="match_content"
         ohos:width="match_content"
         ohos:text="最近一天"
 
         ohos:text_color="$color:gray"
-        ohos:text_size="20vp"
-        ohos:padding="15vp"
+        ohos:text_size="17vp"
+        ohos:padding="10vp"
 
         />
     </DirectionalLayout>

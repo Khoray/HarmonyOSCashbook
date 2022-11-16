@@ -23,7 +23,7 @@
                 ohos:id="$+id:more_filter_btn"
                 ohos:height="60fp"
                 ohos:width="60fp"
-                ohos:image_src="$media:icon"
+                ohos:image_src="$media:morefilter"
                 ohos:margin="6fp"
                 ohos:scale_mode="stretch">
 
@@ -52,7 +52,7 @@
                 ohos:height="60fp"
                 ohos:width="60fp"
                 ohos:margin="6fp"
-                ohos:image_src="$media:icon"
+                ohos:image_src="$media:year"
                 ohos:scale_mode="stretch">
 
             </Image>
@@ -79,7 +79,7 @@
                 ohos:id="$+id:monthrecord_btn"
                 ohos:height="60fp"
                 ohos:width="60fp"
-                ohos:image_src="$media:icon"
+                ohos:image_src="$media:month"
                 ohos:margin="6fp"
                 ohos:scale_mode="stretch">
 
@@ -107,7 +107,7 @@
                 ohos:id="$+id:dayrecord_btn"
                 ohos:height="60fp"
                 ohos:width="60fp"
-                ohos:image_src="$media:icon"
+                ohos:image_src="$media:day"
                 ohos:margin="6fp"
                 ohos:scale_mode="stretch">
 

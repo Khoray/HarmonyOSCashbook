@@ -53,7 +53,7 @@
                     ohos:text="支出"
                     ohos:end_padding="10vp"
                     ohos:text_color="#14BA8A"
-                    ohos:text_size="20vp"
+                    ohos:text_size="17vp"
                     />
                 <Text
                     ohos:id="$+id:title_pay_text"
@@ -63,7 +63,7 @@
                     ohos:text_color="#14BA8A"
                     ohos:text="[0]"
                     ohos:end_padding="10vp"
-                    ohos:text_size="20vp"
+                    ohos:text_size="17vp"
                     />
                 <Text
                     ohos:height="match_parent"
@@ -72,7 +72,7 @@
                     ohos:text_color="#8B8B8A"
                     ohos:text="|"
                     ohos:end_padding="10vp"
-                    ohos:text_size="20vp"
+                    ohos:text_size="17vp"
                     />
                 <Text
                     ohos:height="match_parent"
@@ -80,7 +80,7 @@
                     ohos:text_color="#F1533A"
                     ohos:text="收入"
                     ohos:end_padding="10vp"
-                    ohos:text_size="20vp"
+                    ohos:text_size="17vp"
                     />
                 <Text
                     ohos:id="$+id:title_income_text"
@@ -90,7 +90,7 @@
                     ohos:text_color="#F1533A"
                     ohos:text_alignment="center"
                     ohos:text="[0]"
-                    ohos:text_size="20vp"
+                    ohos:text_size="17vp"
                     />
 
 
@@ -106,5 +106,5 @@
         ohos:text_size="18fp"
         ohos:top_margin="2vp"
         ohos:bottom_margin="2vp"
-        ohos:background_element="#220000ff"/>
+        ohos:background_element="$color:zfbblue2"/>
 </DirectionalLayout>

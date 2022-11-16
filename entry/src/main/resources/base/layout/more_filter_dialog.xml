@@ -5,23 +5,39 @@
     ohos:width="match_parent"
     ohos:alignment="center"
     ohos:orientation="vertical">
-    <Text
-        ohos:id="$+id:addandedit_title"
-        ohos:width="match_content"
-        ohos:top_margin="5vp"
+    <DirectionalLayout
         ohos:height="match_content"
-        ohos:text="自定义筛选"
-        ohos:text_size="20fp"
-        ohos:text_color="#000000"/>
+        ohos:width="match_parent"
+        ohos:top_margin="10vp"
+        ohos:orientation="horizontal"
+        ohos:alignment="center"
+        >
+        <Image
+            ohos:height="22vp"
+            ohos:width="22vp"
+            ohos:scale_mode="stretch"
+            ohos:image_src="$media:morefilter"
+            />
+        <Text
+            ohos:id="$+id:addandedit_title"
+            ohos:width="match_content"
+            ohos:height="match_content"
+            ohos:start_margin="10vp"
+            ohos:text="自定义筛选"
+            ohos:text_size="20fp"
+            ohos:text_color="#000000"/>
+
+    </DirectionalLayout>
+
     <Text
         ohos:width="match_parent"
         ohos:height="1vp"
         ohos:text_size="18fp"
-        ohos:top_margin="5vp"
+        ohos:top_margin="10vp"
         ohos:bottom_margin="5vp"
-        ohos:background_element="#220000ff"/>
+        ohos:background_element="$graphic:button_bg_zfbblue"/>
     <DirectionalLayout
-        ohos:height="30vp"
+        ohos:height="match_content"
         ohos:width="match_parent"
         ohos:alignment="center"
         ohos:orientation="horizontal"
@@ -29,9 +45,16 @@
         ohos:start_padding="10vp"
         ohos:end_padding="10vp"
         >
+        <Image
+            ohos:height="17vp"
+            ohos:width="17vp"
+            ohos:scale_mode="stretch"
+            ohos:image_src="$media:start"
+            />
         <Text
             ohos:height="match_content"
             ohos:width="match_content"
+            ohos:start_margin="5vp"
             ohos:text="开始: "
             ohos:weight="0.5"
             ohos:text_size="17vp"
@@ -56,18 +79,26 @@
             />
     </DirectionalLayout>
     <DirectionalLayout
-        ohos:height="30vp"
+        ohos:height="match_content"
         ohos:width="match_parent"
         ohos:alignment="center"
         ohos:orientation="horizontal"
         ohos:total_weight="3"
+        ohos:top_margin="10vp"
         ohos:start_padding="10vp"
         ohos:end_padding="10vp"
         >
+        <Image
+            ohos:height="17vp"
+            ohos:width="17vp"
+            ohos:scale_mode="stretch"
+            ohos:image_src="$media:end"
+            />
         <Text
 
             ohos:height="match_content"
             ohos:width="match_content"
+            ohos:start_margin="5vp"
             ohos:text="结束:"
             ohos:weight="0.5"
             ohos:text_size="17vp"
@@ -93,17 +124,25 @@
             />
     </DirectionalLayout>
     <DirectionalLayout
-        ohos:height="30vp"
+        ohos:height="match_content"
         ohos:width="match_parent"
         ohos:alignment="center"
         ohos:orientation="horizontal"
+        ohos:top_margin="10vp"
         ohos:total_weight="3"
         ohos:start_padding="10vp"
         ohos:end_padding="10vp"
         >
+        <Image
+            ohos:height="17vp"
+            ohos:width="17vp"
+            ohos:scale_mode="stretch"
+            ohos:image_src="$media:type"
+            />
         <Text
             ohos:height="match_content"
             ohos:width="match_content"
+            ohos:start_margin="5vp"
             ohos:text="类型:"
             ohos:weight="0.5"
             ohos:text_size="17vp"
@@ -128,7 +167,8 @@
             />
     </DirectionalLayout>
     <DirectionalLayout
-        ohos:height="30vp"
+        ohos:height="match_content"
+        ohos:top_margin="10vp"
         ohos:width="match_parent"
         ohos:alignment="center"
         ohos:orientation="horizontal"
@@ -136,12 +176,18 @@
         ohos:end_padding="10vp"
         ohos:total_weight="3.5"
         >
-
+        <Image
+            ohos:height="17vp"
+            ohos:width="17vp"
+            ohos:scale_mode="stretch"
+            ohos:image_src="$media:jiangjinxiangqing"
+            />
 
         <Text
             ohos:height="match_parent"
             ohos:width="match_parent"
             ohos:text_size="17vp"
+            ohos:start_margin="5vp"
             ohos:weight="1"
             ohos:text="金额范围:"
             />
@@ -166,7 +212,7 @@
             />
         <TextField
             ohos:id="$+id:high_value_tf"
-            ohos:height="match_parent"
+            ohos:height="match_content"
             ohos:width="match_parent"
             ohos:text_size="17vp"
             ohos:weight="1.0"
@@ -175,7 +221,8 @@
             />
     </DirectionalLayout>
     <DirectionalLayout
-        ohos:height="30vp"
+        ohos:top_margin="10vp"
+        ohos:height="match_content"
         ohos:width="match_parent"
         ohos:alignment="center"
         ohos:orientation="horizontal"
@@ -184,10 +231,16 @@
         ohos:total_weight="3"
         >
 
-
+        <Image
+            ohos:height="17vp"
+            ohos:width="17vp"
+            ohos:scale_mode="stretch"
+            ohos:image_src="$media:search"
+            />
         <TextField
             ohos:id="$+id:search_field"
-            ohos:height="match_parent"
+            ohos:height="match_content"
+            ohos:start_margin="5vp"
             ohos:width="match_parent"
             ohos:background_element="$graphic:bg_textfield"
             ohos:text_size="17vp"
@@ -200,9 +253,9 @@
         ohos:width="match_parent"
         ohos:height="1vp"
         ohos:text_size="18fp"
-        ohos:top_margin="5vp"
+        ohos:top_margin="10vp"
         ohos:bottom_margin="5vp"
-        ohos:background_element="#220000ff"/>
+        ohos:background_element="$graphic:button_bg_zfbblue"/>
     <DirectionalLayout
         ohos:height="40vp"
         ohos:width="match_parent"

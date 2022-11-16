@@ -15,18 +15,18 @@
             ohos:id="$+id:time_date_pick"
             ohos:height="match_content"
             ohos:text_size="17vp"
+            ohos:selected_text_color="$color:zfbblue2"
             ohos:width="match_parent"
-            ohos:weight="2.5"
-            ohos:background_element="#C89FDEFF">
-        </DatePicker>
+            ohos:weight="3"
+            />
         <TimePicker
             ohos:id="$+id:time_time_pick"
             ohos:height="match_parent"
             ohos:text_size="17vp"
-            ohos:weight="2.5"
+            ohos:selected_text_color="$color:zfbblue2"
+            ohos:weight="2"
             ohos:width="match_parent"
-            ohos:background_element="#C89FDEFF">
-        </TimePicker>
+            />
     </DirectionalLayout>
 
     <DirectionalLayout
