@@ -120,7 +120,7 @@ public class DialogHelper {
 
             newRecord.setNote(noteTf.getText());
             recordCallBack.recordCallBack(newRecord);
-            DebugUtil.showToast(context, newRecord.toString());
+//            DebugUtil.showToast(context, newRecord.toString());
             cd.destroy();
 
         });
@@ -248,7 +248,7 @@ public class DialogHelper {
         ps.setProvider(new PageProvider(new PageProvider.ClickedListener() {
             @Override
             public void click(int majorType, int minorType) {
-                DebugUtil.showToast(context, "majortype:" + majorType + " minortype:" + minorType);
+//                DebugUtil.showToast(context, "majortype:" + majorType + " minortype:" + minorType);
                 pickTypeCallBack.pickTypeCallBack(majorType, minorType);
                 cd.destroy();
             }

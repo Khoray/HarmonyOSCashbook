@@ -3,11 +3,27 @@
     xmlns:ohos="http://schemas.huawei.com/res/ohos"
     ohos:height="match_parent"
     ohos:width="match_parent"
-
+    ohos:alignment="center"
     ohos:orientation="vertical">
+    <DirectionalLayout
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:alignment="center"
+        ohos:background_element="$color:zfbblue2"
+        ohos:orientation="vertical"
+        >
+        <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:top_margin="10vp"
+        ohos:text="记账本"
+        ohos:text_size="18vp"
+        ohos:text_color="#fff"
+            />
+    </DirectionalLayout>
 
     <DirectionalLayout
-        ohos:height="150vp"
+        ohos:height="130vp"
         ohos:width="match_parent"
         ohos:alignment="left|bottom"
         ohos:orientation="vertical"
@@ -95,7 +111,7 @@
         ohos:id="$+id:filter_type_text"
         ohos:height="match_content"
         ohos:width="match_content"
-        ohos:text="最近一天"
+        ohos:text="最近30天"
 
         ohos:text_color="$color:gray"
         ohos:text_size="17vp"

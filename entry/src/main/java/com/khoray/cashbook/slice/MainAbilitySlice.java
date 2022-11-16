@@ -3,7 +3,6 @@ package com.khoray.cashbook.slice;
 import com.khoray.cashbook.ResourceTable;
 import com.khoray.cashbook.model.*;
 import com.khoray.cashbook.provider.RecordItemProvider;
-import com.khoray.cashbook.utils.DebugUtil;
 import com.khoray.cashbook.utils.TimeUtil;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
@@ -17,7 +16,7 @@ import java.util.List;
 import java.util.Random;
 
 public class MainAbilitySlice extends AbilitySlice {
-    FilterBean currentFilter = FilterBean.getDayFilter();
+    FilterBean currentFilter = FilterBean.getMonthFilter();
     Text payText, incomeText, totalText, filterTypeText;
 //    TextField searchField;
     Button addandeditBtn, filterButton;
@@ -34,10 +33,12 @@ public class MainAbilitySlice extends AbilitySlice {
 
 
         initDatabase();
-        addDebugDatas();
-        
         getComponents();
-        updateRecordList();
+        updateRecordListAndText();
+        if(records.size() == 0) addDebugDatas();
+        
+
+
         initListContainer();
 
         setListener();
@@ -57,9 +58,10 @@ public class MainAbilitySlice extends AbilitySlice {
             ormContext.insert(rb);
         }
         ormContext.flush();
+        updateRecordListAndText();
     }
 
-    private void updateRecordList() {
+    private void updateRecordListAndText() {
         List<RecordBean> tmpRecords = ormContext.query(currentFilter.generatePredicates(ormContext));
         tmpRecords.sort(new Comparator<RecordBean>() {
             @Override
@@ -104,14 +106,14 @@ public class MainAbilitySlice extends AbilitySlice {
             beg = ed;
         }
 
-        DebugUtil.showToast(getContext(), "size:" + records.size());
+//        DebugUtil.showToast(getContext(), "size:" + records.size());
         payText.setText(String.format("%.2f", totalPay));
         incomeText.setText(String.format("%.2f", totalIncome));
         totalText.setText(String.format("%.2f", totalIncome - totalPay));
     }
 
     private void updateRecordAndListContainer() {
-        updateRecordList();
+        updateRecordListAndText();
         recordItemProvider.update(records);
     }
 
@@ -198,7 +200,7 @@ public class MainAbilitySlice extends AbilitySlice {
             public void recordCallBack(RecordBean record) {
                 boolean ok = ormContext.insert(record);
                 boolean okflush = ormContext.flush();
-                DebugUtil.showToast(getContext(), "ok:" + Boolean.toString(ok) + " okflush:" + Boolean.toString(okflush));
+//                DebugUtil.showToast(getContext(), "ok:" + Boolean.toString(ok) + " okflush:" + Boolean.toString(okflush));
                 updateRecordAndListContainer();
             }
 
