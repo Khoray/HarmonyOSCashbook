@@ -53,6 +53,7 @@ public class RecordItemProvider extends BaseItemProvider {
     public Component getComponent(int i, Component component, ComponentContainer componentContainer) {
         RecordBean nowRecord = records.get(i);
         if(nowRecord.isTitle) {
+            // 是汇总的item
             DirectionalLayout dl = (DirectionalLayout) LayoutScatter.getInstance(ctx).parse(ResourceTable.Layout_list_title, null, false);
             Text dayText = (Text) dl.findComponentById(ResourceTable.Id_title_day_text);
             Text ymText = (Text) dl.findComponentById(ResourceTable.Id_title_ym_text);
@@ -68,6 +69,7 @@ public class RecordItemProvider extends BaseItemProvider {
             incomeText.setText(String.format("%.2f", nowRecord.income));
             return dl;
         } else {
+            // 正常的record
             DirectionalLayout dl = (DirectionalLayout) LayoutScatter.getInstance(ctx).parse(ResourceTable.Layout_list_item, null, false);
             Image majorTypeImg = (Image) dl.findComponentById(ResourceTable.Id_item_majortype_img);
             Text minorTypeText = (Text) dl.findComponentById(ResourceTable.Id_item_type_text);

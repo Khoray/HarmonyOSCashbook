@@ -46,6 +46,9 @@ public class MainAbilitySlice extends AbilitySlice {
 
     }
 
+    /**
+     * 添加随机生成的账目信息用于测试
+     */
     private void addDebugDatas() {
         Random random = new Random();
         for(int i = 0; i < 200; i++) {
@@ -54,13 +57,17 @@ public class MainAbilitySlice extends AbilitySlice {
             rb.setValue(random.nextInt(1000) + (random.nextBoolean() ? 0.5 : 0));
             rb.setMajorType((random.nextBoolean() ? 0 : 1));
             rb.setMinorType((random.nextInt(9)));
-            rb.setNote("debug");
+            rb.setNote("用于测试");
             ormContext.insert(rb);
         }
         ormContext.flush();
         updateRecordListAndText();
     }
 
+
+    /**
+     * 更新record中的内容，并且更新界面中的payText和incomeText
+     */
     private void updateRecordListAndText() {
         List<RecordBean> tmpRecords = ormContext.query(currentFilter.generatePredicates(ormContext));
         tmpRecords.sort(new Comparator<RecordBean>() {
@@ -112,6 +119,9 @@ public class MainAbilitySlice extends AbilitySlice {
         totalText.setText(String.format("%.2f", totalIncome - totalPay));
     }
 
+    /**
+     * 更新ListContainer
+     */
     private void updateRecordAndListContainer() {
         updateRecordListAndText();
         recordItemProvider.update(records);
@@ -169,37 +179,24 @@ public class MainAbilitySlice extends AbilitySlice {
     }
 
     public void setListener() {
-//        startTimeModifyBtn.setClickedListener(this::pickStartTime);
-//        endTimeModifyBtn.setClickedListener(this::pickEndTime);
-//        typeModifyBtn.setClickedListener(this::pickType);
-//        typeClearBtn.setClickedListener((Component component) -> {
-//            typeText.setText("全部");
-//            recordMinorType = -1;
-//            recordMajorType = -1;
-//            updateRecordList();
-//        });
         filterButton.setClickedListener((Component c) -> {
             DialogHelper.pickFilter(getContext(), new FilterDialog.FilterCallBack() {
                 @Override
                 public void filterCallBack(FilterBean fb) {
+                    // 回调接收到筛选器后查询数据库更新record和ListContainer
                     currentFilter = fb;
                     updateRecordAndListContainer();
                 }
             }, currentFilter, filterTypeText);
         });
         addandeditBtn.setClickedListener(this::addandedit);
-//        searchBtn.setClickedListener((Component component) -> {
-//            updateRecordList();
-//        });
-//        searchBtn.setTouchFocusable(true);
     }
 
     void addandedit(Component component) {
         DialogHelper.addandeditRecord(getContext(), new DialogHelper.RecordCallBack() {
             @Override
             public void recordCallBack(RecordBean record) {
-                boolean ok = ormContext.insert(record);
-                boolean okflush = ormContext.flush();
+                // 记账并更新
 //                DebugUtil.showToast(getContext(), "ok:" + Boolean.toString(ok) + " okflush:" + Boolean.toString(okflush));
                 updateRecordAndListContainer();
             }

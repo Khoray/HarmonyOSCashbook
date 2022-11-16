@@ -48,6 +48,7 @@ public class PageProvider extends PageSliderProvider {
             len = Const.incomeType.length;
         }
         int width = componentContainer.getWidth();
+        // 添加Const中的账目类型
         for(int k = 0; k < 100; k++) {
             if(k * 3 >= len) break;
             DirectionalLayout ly = new DirectionalLayout(ctx);

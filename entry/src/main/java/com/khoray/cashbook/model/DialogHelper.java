@@ -28,7 +28,14 @@ public class DialogHelper {
     }
 
 
-
+    /**
+     * 添加或者修改账目对话框
+     * @param context
+     * @param recordCallBack 回调
+     * @param title
+     * @param canDelete
+     * @param record
+     */
     public static void addandeditRecord(Context context, RecordCallBack recordCallBack, String title, boolean canDelete, RecordBean record) {
         RecordBean newRecord = new RecordBean(record);
 
@@ -131,6 +138,13 @@ public class DialogHelper {
         cd.show();
     }
 
+    /**
+     * 选择筛选器对话框
+     * @param context
+     * @param fcb 回调
+     * @param fb
+     * @param filterTypeText
+     */
     public static void pickFilter(Context context, FilterDialog.FilterCallBack fcb, FilterBean fb, Text filterTypeText) {
         CommonDialog cd = new CommonDialog(context);
         DirectionalLayout dl = (DirectionalLayout) LayoutScatter.getInstance(context).parse(ResourceTable.Layout_filter_dialog, null, false);
@@ -165,6 +179,11 @@ public class DialogHelper {
         cd.show();
     }
 
+    /**
+     * 选择日期
+     * @param context
+     * @param confirmPickTime
+     */
     public static void pickDate(Context context, PickTimeCallBack confirmPickTime) {
         CommonDialog cd = new CommonDialog(context);
         DirectionalLayout dl = (DirectionalLayout) LayoutScatter.getInstance(context).parse(ResourceTable.Layout_date_pick_dialog, null, false);
@@ -189,6 +208,11 @@ public class DialogHelper {
         cd.show();
     }
 
+    /**
+     * 选择时间
+     * @param context
+     * @param confirmPickTime
+     */
     public static void pickTime(Context context, PickTimeCallBack confirmPickTime) {
         CommonDialog cd = new CommonDialog(context);
         DirectionalLayout dl = (DirectionalLayout) LayoutScatter.getInstance(context).parse(ResourceTable.Layout_time_pick_dialog, null, false);
@@ -215,6 +239,11 @@ public class DialogHelper {
         cd.show();
     }
 
+    /**
+     * 选择分类
+     * @param context
+     * @param pickTypeCallBack
+     */
     public static void pickType(Context context, PickTypeCallBack pickTypeCallBack) {
         CommonDialog cd = new CommonDialog(context);
         DirectionalLayout dl = (DirectionalLayout) LayoutScatter.getInstance(context).parse(ResourceTable.Layout_type_select_dialog, null, false);
