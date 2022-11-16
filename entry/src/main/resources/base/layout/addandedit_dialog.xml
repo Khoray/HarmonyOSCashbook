@@ -206,11 +206,11 @@
         ohos:alignment="center"
         ohos:top_margin="10vp"
         ohos:total_weight="2"
+        ohos:bottom_margin="5vp"
         >
         <Button
             ohos:id="$+id:andandedit_cancel_btn"
             ohos:width="match_parent"
-            ohos:bottom_margin="10vp"
             ohos:height="match_parent"
             ohos:weight="1"
             ohos:text="取消"
@@ -219,7 +219,6 @@
         <Button
             ohos:id="$+id:addandedit_save_btn"
             ohos:width="match_parent"
-            ohos:bottom_margin="10vp"
             ohos:height="match_parent"
             ohos:weight="1"
             ohos:text="保存"

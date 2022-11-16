@@ -9,6 +9,7 @@
         ohos:height="match_content"
         ohos:width="match_parent"
         ohos:alignment="center"
+        ohos:padding="5vp"
         ohos:orientation="horizontal"
         >
         <Text
@@ -32,8 +33,7 @@
         ohos:height="1vp"
         ohos:text_size="18fp"
         ohos:top_margin="5vp"
-        ohos:bottom_margin="5vp"
-        ohos:background_element="#220000ff"/>
+        ohos:background_element="$color:zfbblue2"/>
     <PageSlider
         ohos:id="$+id:page_slider"
         ohos:height="match_content"

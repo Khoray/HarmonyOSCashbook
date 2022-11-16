@@ -263,6 +263,7 @@
         ohos:orientation="horizontal"
         ohos:start_padding="10vp"
         ohos:end_padding="10vp"
+        ohos:bottom_margin="5vp"
         ohos:total_weight="3"
         >
 

@@ -28,7 +28,12 @@
             ohos:width="match_parent"
             />
     </DirectionalLayout>
-
+    <Text
+        ohos:width="match_parent"
+        ohos:height="1vp"
+        ohos:text_size="18fp"
+        ohos:top_margin="5vp"
+        ohos:background_element="$color:zfbblue2"/>
     <DirectionalLayout
         ohos:height="match_content"
         ohos:width="match_parent"

@@ -11,7 +11,7 @@ public class TimeUtil {
     public static String formatYMD(int year, int month, int day) {
         DateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
         Calendar c = Calendar.getInstance();
-        c.set(year, month, day);
+        c.set(year, month - 1, day);
         return sdf.format(c.getTime());
     }
     public static String formatHM(long time) {
@@ -21,7 +21,7 @@ public class TimeUtil {
     public static String formatYMDHM(int year, int month, int day, int hour, int minute) {
         DateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日HH:mm");
         Calendar c = Calendar.getInstance();
-        c.set(year, month, day, hour, minute);
+        c.set(year, month - 1, day, hour, minute);
         return sdf.format(c.getTime());
     }
     public static long YMDtoTime(int year, int month, int day) {
